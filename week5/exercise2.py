@@ -12,7 +12,6 @@ def italian_dinner(axiom="tomatoes", guard=6):
     u"""Make recursive dinner plans.
 
     This is an example to help you get your head around the idea of recursion.
-
     # The Italian dinner
 
     In Douglas Hofstader's _Metamagical Themas_ (a compendium of essays he
@@ -31,25 +30,21 @@ def italian_dinner(axiom="tomatoes", guard=6):
             thought of as theroums of the system; and
         3.  there are a set of rules for transforming any statement which is
             part of the formal system into any other using replacement rules.
-    In the itallian dinner, teh axiom is of course _tomatoes_
 
+    In the itallian dinner, teh axiom is of course _tomatoes_
     Note that in order for this to work, we need to habe at least one word in
     the right-hand side that matches one of the words in the left-hand side.
     If we do not do this then the production system will not catch, and it will
     fail to expand into the florid ingredients list.
-
     From Paul Coates, Programming.Architecture
     I would strongly recomend reading this book!
-
     referencing: DOUGLAS R. HOFSTADTER, Metamagical Themas
     https://archive.org/stream/MetamagicalThemas/Metamagical%20Themas,%20Hofstadter_djvu.txt
-
     left-hand side        right-hand side
     tomatoes        ⇨     tomatoes with linguini and basil
     and             ⇨     runny with delicious pesto
     delicious       ⇨     made of runny and yummy pasta and tomatoes
     runny           ⇨     yummy and delicious tomatoes and pasta
-
     Here's a photo of the page: https://goo.gl/photos/bEh8dmkYkeAy7W727
     """
     parts = axiom.split(" ")
@@ -81,12 +76,10 @@ def abba(source="abba", guard=3):
 
     This function takes a seed string, e.g. "abba" and replaces each letter in
     turn acording to the rules. These rules can be of arbitrary complexity.
-
     Modify the rules to map from:
-
                    abba
                     to
-               bbaaobaobbba
+               bba aob ao bbba
                     to
     aobaobbbabbaoaaobbbaoaaobaobaobbba
                 and so on...
@@ -97,16 +90,22 @@ def abba(source="abba", guard=3):
         You need to change these substitutions to make it work.
         """
         if letter == "a":
-            return "a"
+            return "bba"
         elif letter == "b":
-            return "b"
+            return "aob"
         elif letter == "o":
-            return "o"
+            return "oa"
         else:
             return letter
 
-    # write the rest of the function here
-    pass
+    parts = list(source)
+    result = map(apply_rules, parts)
+    new_string = "".join(result)
+    guard -= 1
+    if guard > 0:
+        return abba(new_string, guard)
+    else:
+        return new_string
 
 
 def koch(t, order, size):
@@ -132,7 +131,7 @@ def draw_koch(drawing_method, steps_deep=4):
     https://docs.python.org/2/library/turtle.html
     """
     raphael = turtle.Turtle()
-    raphael.speed(1000)
+    raphael.speed(10)
     raphael.penup()
     raphael.goto(-300, 0)
     raphael.pendown()
@@ -145,14 +144,16 @@ def square_koch(t, order, size):
 
            _
     e.g. _| |_ rather than _/\_
-
     Leave the turtle facing the same direction.
-
     """
     trace = ""
-    # write the rest of the function here.
+    if order == 0:
+        t.forward(size)
+    else:
+        for angle in [90, -90, -90, 90, 0]:
+            trace += square_koch(t, order-1, size/3)
+            t.left(angle)
     return str(order) + trace
-    pass
 
 
 def draw_square(steps=4):
