@@ -12,8 +12,7 @@ def is_odd(a_number):
     if a_number % 2 != 0:
         return True
     else:
-        return False 
-
+        return False
 
 
 def fix_it(moves=True, should_move=True):
@@ -27,8 +26,6 @@ def fix_it(moves=True, should_move=True):
     "Duct Tape"
     "No Problem"
     """
-
-
     if moves and should_move:
         return "No Problem"
     elif moves and not should_move:
@@ -48,10 +45,7 @@ def loops_1a():
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    star_list = []
-    for i in range(10):
-        star_list.append("*")
-    return star_list
+    return map(lambda x: '*', range(10))
 
 
 def star_map():
@@ -62,16 +56,7 @@ def star_map():
     if it's even. Reuse the is odd function that you've already written.
     E.g.: ["!", "*", "!", "*", "!", "*", "!", "*", "!", "*"]
     """
-
-    def star_or_bang(a_number):
-        """Heyo. """
-        if is_odd(a_number):
-            return "*"
-        else:
-            return "!"
-
-    result = map(star_or_bang, range(10))
-    return result
+    return(map(lambda x: '*' if is_odd(x) else '!', range(0, 10)))
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -82,7 +67,6 @@ def loops_1c(number_of_items=5, symbol="#"):
     a string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-
     starhash_list = []
     for i in range(number_of_items):
         starhash_list.append(symbol)
@@ -253,7 +237,6 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-
     baseLength = 9
     starting = int(baseLength / 2)  # Get middle index
     printNum = 1

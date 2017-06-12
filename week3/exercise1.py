@@ -12,12 +12,7 @@ def loop_ranger(start, stop=None, step=1):
 
     Do this using any method apart from just using range()
     """
-
-    first_loop = []
-    while start < stop:
-        first_loop.append(start)
-        start += step
-    return first_loop
+    return map(lambda x: x, range(start, stop, step))
 
 
 def lone_ranger(start, stop, step):
